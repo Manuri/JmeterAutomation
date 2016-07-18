@@ -9,14 +9,13 @@ public class JmeterTest {
     @Test
     public void runJemterTest() throws Exception {
         JMeterTest script1 = new JMeterTest(
-                new File("/home/manurip/Documents/Work/Tasks/RnD/DIS/351release/perfTest/final/get-xml-10.jmx"));
+                new File("../../../../../resources/getxml/get-xml-10.jmx"));
         JMeterTest script2 = new JMeterTest(
-                new File("/home/manurip/Documents/Work/Tasks/RnD/DIS/351release/perfTest/final/get-xml-100.jmx"));
+                new File("../resources/get-xml-100.jmx"));
         JMeterTestManager manager = new JMeterTestManager();
 
-       // while(true) {
-            manager.runTest(script1);
-            manager.runTest(script2);
-        //}
+        manager.runTest(script1);
+        //manager.runTest(script2);
+
     }
 }
