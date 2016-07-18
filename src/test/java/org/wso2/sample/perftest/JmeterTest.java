@@ -9,9 +9,9 @@ public class JmeterTest {
     @Test
     public void runJemterTest() throws Exception {
         JMeterTest script1 = new JMeterTest(
-                new File("../../../../../resources/getxml/get-xml-10.jmx"));
+                new File("src/test/resources/jmx/getxml/get-xml-10.jmx"));
         JMeterTest script2 = new JMeterTest(
-                new File("../resources/get-xml-100.jmx"));
+                new File("src/test/resources/jmx/getxml/get-xml-100.jmx"));
         JMeterTestManager manager = new JMeterTestManager();
 
         manager.runTest(script1);
