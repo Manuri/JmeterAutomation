@@ -19,10 +19,10 @@ public class JmeterTest {
         int i =1 ;
         folders[0] = new File("src/test/resources/jmx/odata");
         for(File fileEntry : folder.listFiles()) {
-            if(fileEntry.isDirectory() && !"odata".equals(fileEntry.getName())) {
+            if(fileEntry.isDirectory() && !fileEntry.getPath().contains("odata")) {
                 folders[i] = new File(fileEntry.getPath());
+                i++;
             }
-            i++;
         }
 
         JMeterTestManager manager = new JMeterTestManager();
