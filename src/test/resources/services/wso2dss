@@ -1,0 +1,25 @@
+#! /bin/sh
+export JAVA_HOME="/usr/lib/jvm/jdk1.7.0_79"
+
+startcmd='/home/ubuntu/wso2dss-3.5.1-beta1/bin/wso2server.sh start'
+restartcmd='/home/ubuntu/wso2dss-3.5.1-beta1/bin/wso2server.sh restart'
+stopcmd='/home/ubuntu/wso2dss-3.5.1-beta1/bin/wso2server.sh stop'
+
+case "$1" in
+start)
+   echo "Starting WSO2 Data Services Server ..."
+   su -c "${startcmd}" ubuntu
+;;
+restart)
+   echo "Re-starting WSO2 Data Services Server ..."
+   su -c "${restartcmd}" ubuntu
+;;
+stop)
+   echo "Stopping WSO2 Data Services Server ..."
+   su -c "${stopcmd}" ubuntu
+;;
+*)
+   echo "Usage: $0 {start|stop|restart}"
+exit 1
+esac
+
