@@ -16,9 +16,10 @@ public class JmeterTest {
         File folder = new File("src/test/resources/jmx");
         File[] folders = new File[11];
 
-        int i =0 ;
+        int i =1 ;
+        folders[0] = new File("src/test/resources/jmx/odata");
         for(File fileEntry : folder.listFiles()) {
-            if(fileEntry.isDirectory()) {
+            if(fileEntry.isDirectory() && !"odata".equals(fileEntry.getName())) {
                 folders[i] = new File(fileEntry.getPath());
             }
             i++;
