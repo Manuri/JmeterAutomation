@@ -27,7 +27,7 @@ public class JmeterTest {
 
         JMeterTestManager manager = new JMeterTestManager();
 
-        for(int j =0; j<folders.length;j++ ) {
+        for(int j =1; j<folders.length;j++ ) {
             for(File fileEntry : folders[j].listFiles()) {
                 if(!fileEntry.isDirectory()) {
                     manager.runTest(new JMeterTest(new File(fileEntry.getPath())));
