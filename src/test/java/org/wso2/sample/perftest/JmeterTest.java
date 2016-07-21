@@ -30,6 +30,7 @@ public class JmeterTest {
             for(File fileEntry : folders[j].listFiles()) {
                 if(!fileEntry.isDirectory()) {
                     manager.runTest(new JMeterTest(new File(fileEntry.getPath())));
+                    Thread.sleep(2000);
                 }
             }
         }
