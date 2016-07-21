@@ -1,6 +1,6 @@
 <data disableStreaming="true" enableBatchRequests="true" enableBoxcarring="true" name="PerfTestSecuredService" transports="http https local">
    <config enableOData="false" id="PerfTestDS">
-         <property name="driverClassName">com.mysql.jdbc.Dshowriver</property>
+         <property name="driverClassName">com.mysql.jdbc.Driver</property>
          <property name="url">jdbc:mysql://mysql.wso2.com:3306/employeedb</property>
          <property name="username">dss</property>
          <property name="password">123</property>
