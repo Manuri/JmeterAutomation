@@ -2,27 +2,17 @@ package org.wso2.sample.perftest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.wso2.automation.tools.jmeter.JMeterTest;
 import org.wso2.automation.tools.jmeter.JMeterTestManager;
+
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 public class JmeterTest {
     private static final Log log = LogFactory.getLog(JmeterTest.class);
-
-    @BeforeClass
-    public void changeJmeterPropertiesFile() throws IOException {
-        Path jmeterpropertiesfilepath = Paths.get(System.getProperty("basedir", ".")
-                ,"target", "jmeter","bin","jmeter.properties");
-
-        Files.write(jmeterpropertiesfilepath, (System.getProperty("line.separator")+"jmeterengine.nongui.maxport=500").getBytes(), StandardOpenOption.APPEND);
-    }
+    Path jmeterPropertyFilePath = Paths.get("src","test","resources","jmeter.properties");
 
     @Test
     public void runJemterTest() throws Exception {
@@ -40,11 +30,13 @@ public class JmeterTest {
         }
 
         JMeterTestManager manager = new JMeterTestManager();
-
+        JMeterTest test;
         for(int j =1; j<folders.length;j++ ) {
             for(File fileEntry : folders[j].listFiles()) {
                 if(!fileEntry.isDirectory()) {
-                    manager.runTest(new JMeterTest(new File(fileEntry.getPath())));
+                    test = new JMeterTest(new File(fileEntry.getPath()));
+                    test.setJMeterPropertyFile(jmeterPropertyFilePath.toFile());
+                    manager.runTest(test);
                     Thread.sleep(2000);
                 }
             }
