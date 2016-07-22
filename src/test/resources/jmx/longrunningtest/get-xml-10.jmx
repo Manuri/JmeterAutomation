@@ -33,6 +33,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">&lt;_putput_id&gt;&#xd;
+&lt;id&gt;1&lt;/id&gt;&#xd;
 &lt;name &gt;kkk&lt;/name&gt;&#xd;
 &lt;/_putput_id&gt;</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -45,7 +46,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/services/PerfTestService/put/1</stringProp>
+          <stringProp name="HTTPSampler.path">/services/PerfTestService/put</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
