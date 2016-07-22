@@ -36,7 +36,11 @@ public class JmeterTest {
                 if(!fileEntry.isDirectory()) {
                     test = new JMeterTest(new File(fileEntry.getPath()));
                     test.setJMeterPropertyFile(jmeterPropertyFilePath.toFile());
-                    manager.runTest(test);
+                    try {
+                        manager.runTest(test);
+                    } catch (Exception e) {
+                        log.error(e.getMessage());
+                    }
                     Thread.sleep(2000);
                 }
             }
