@@ -23,7 +23,7 @@ public class JmeterTest {
         int i =1 ;
         folders[0] = new File("src/test/resources/jmx/odata");
         for(File fileEntry : folder.listFiles()) {
-            if(fileEntry.isDirectory() && !fileEntry.getPath().contains("odata")) {
+            if(fileEntry.isDirectory() && !fileEntry.getPath().contains("odata") && !fileEntry.getPath().contains("longrunning")) {
                 folders[i] = new File(fileEntry.getPath());
                 i++;
             }
