@@ -171,7 +171,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
         <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.start">2</stringProp>
           <stringProp name="CounterConfig.end">1000</stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">id</stringProp>

@@ -14,7 +14,7 @@ public class JmeterTest {
     private static final Log log = LogFactory.getLog(JmeterTest.class);
     Path jmeterPropertyFilePath = Paths.get("src","test","resources","jmeter.properties");
 
-    @Test(enabled = false)
+    @Test//(enabled = true)
     public void runJemterTest() throws Exception {
 
         File folder = new File("src/test/resources/jmx");
@@ -48,7 +48,7 @@ public class JmeterTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void longRunningTest() throws Exception {
         File jmxFile = new File("src/test/resources/jmx/longrunningtest/get-xml-10.jmx");
 
