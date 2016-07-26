@@ -176,7 +176,7 @@
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">id</stringProp>
           <stringProp name="CounterConfig.format">0</stringProp>
-          <boolProp name="CounterConfig.per_user">true</boolProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
         </CounterConfig>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP DELETE Request" enabled="true">
