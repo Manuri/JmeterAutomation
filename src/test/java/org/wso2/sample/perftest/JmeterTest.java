@@ -52,10 +52,9 @@ public class JmeterTest {
     @Test(enabled = true)
     public void runTests() throws Exception{
         File folder = new File("src/test/resources/jmx");
-        File[] folders = new File[9];
+        File[] folders = new File[8];
 
-        int i = 1;
-        folders[0] = new File("src/test/resources/jmx/odata");
+        int i = 0;
         for (File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()
                     && !fileEntry.getPath().contains("odata")
@@ -70,6 +69,12 @@ public class JmeterTest {
         for (int j = 0; j < folders.length; j++) {
             runTests(folders[j].getPath());
         }
+    }
+
+    @Test(enabled = false)
+    public void runOdataTest() throws Exception {
+        String jmxFilePath = "src/test/resources/jmx/odata/";
+        runTests(jmxFilePath);
     }
 
     @Test(enabled = false)
