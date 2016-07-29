@@ -4,5 +4,9 @@
       <property name="url">jdbc:mysql://mysql.wso2.com:3306/employeedb</property>
       <property name="username">dss</property>
       <property name="password">123</property>
+      <property name="initialSize">10</property>
+      <property name="maxActive">3000</property>
+      <property name="minIdle">10</property>
+      <property name="maxIdle">50</property>
    </config>
 </data>

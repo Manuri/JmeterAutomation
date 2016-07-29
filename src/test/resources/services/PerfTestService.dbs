@@ -1,9 +1,13 @@
 <data disableStreaming="true" enableBatchRequests="true" enableBoxcarring="true" name="PerfTestService" transports="http https local">
    <config enableOData="false" id="PerfTestDS">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
-      <property name="url">jdbc:mysql://mysql.wso2.com:3306/employeedb</property>
+      <property name="url">jdbc:mysql://mysql.wso2.com:3306/employeedb?useSSL=false</property>
       <property name="username">dss</property>
       <property name="password">123</property>
+      <property name="maxActive">3000</property>
+      <property name="initialSize">10</property>
+      <property name="minIdle">10</property>
+      <property name="maxIdle">50</property>
    </config>
    <query id="getQuery" useConfig="PerfTestDS">
       <sql>select * from employee where id=:id</sql>
@@ -16,7 +20,7 @@
    <query id="putQuery" useConfig="PerfTestDS">
       <sql>update employee set name=:name where id=:id</sql>
       <param name="name" sqlType="STRING"/>
-      <param name="id" sqlType="STRING"/>
+      <param name="id" sqlType="INTEGER"/>
    </query>
    <query id="deleteQuery" useConfig="PerfTestDS">
       <sql>delete from employee where id=:id</sql>
@@ -57,13 +61,13 @@
          <with-param name="id" query-param="id"/>
       </call-query>
    </resource>
-   <resource method="PUT" path="put">
+   <resource method="PUT" path="put/{id}">
       <call-query href="putQuery">
          <with-param name="name" query-param="name"/>
          <with-param name="id" query-param="id"/>
       </call-query>
    </resource>
-   <resource method="DELETE" path="delete">
+   <resource method="DELETE" path="delete/{id}">
       <call-query href="deleteQuery">
          <with-param name="id" query-param="id"/>
       </call-query>

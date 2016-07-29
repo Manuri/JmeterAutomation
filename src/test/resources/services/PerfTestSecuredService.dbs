@@ -1,84 +1,86 @@
 <data disableStreaming="true" enableBatchRequests="true" enableBoxcarring="true" name="PerfTestSecuredService" transports="http https local">
    <config enableOData="false" id="PerfTestDS">
-         <property name="driverClassName">com.mysql.jdbc.Driver</property>
-         <property name="url">jdbc:mysql://mysql.wso2.com:3306/employeedb</property>
-         <property name="username">dss</property>
-         <property name="password">123</property>
-      </config>
-      <query id="getQuery" useConfig="PerfTestDS">
-         <sql>select * from employee where id=:id</sql>
-         <result element="Employees" rowName="Employee">
-            <element column="id" name="id" xsdType="integer"/>
-            <element column="name" name="name" xsdType="string"/>
-         </result>
-         <param name="id" sqlType="INTEGER"/>
-      </query>
-      <query id="putQuery" useConfig="PerfTestDS">
-         <sql>update employee set name=:name where id=:id</sql>
-         <param name="name" sqlType="STRING"/>
-         <param name="id" sqlType="STRING"/>
-      </query>
-      <query id="deleteQuery" useConfig="PerfTestDS">
-         <sql>delete from employee where id=:id</sql>
-         <param name="id" sqlType="STRING"/>
-      </query>
-      <query id="insertQuery" useConfig="PerfTestDS">
-         <sql>insert into employee (name,address) values(:name,:address)</sql>
-         <param name="name" sqlType="STRING"/>
-         <param name="address" sqlType="STRING"/>
-      </query>
-      <query id="getJsonQuery" useConfig="PerfTestDS">
-         <sql>select * from employee where id=:id</sql>
-         <result outputType="json">{&#xd;"Employees": {&#xd;"Employee":&#xd;[{"id":"$id","name":"$name","address":"$address"}]&#xd;}&#xd;}</result>
-         <param name="id" sqlType="INTEGER"/>
-      </query>
-      <operation name="getOperation">
-         <call-query href="getQuery"/>
-      </operation>
-      <operation name="insertOperation">
-         <call-query href="insertQuery">
-            <with-param name="name" query-param="name"/>
-            <with-param name="address" query-param="address"/>
-         </call-query>
-      </operation>
-      <operation name="updateOperation">
-         <call-query href="putQuery">
-            <with-param name="name" query-param="name"/>
-            <with-param name="id" query-param="id"/>
-         </call-query>
-      </operation>
-      <operation name="deleteOperation">
-         <call-query href="deleteQuery">
-            <with-param name="id" query-param="id"/>
-         </call-query>
-      </operation>
-      <resource method="GET" path="get/{id}">
-         <call-query href="getQuery">
-            <with-param name="id" query-param="id"/>
-         </call-query>
-      </resource>
-      <resource method="PUT" path="put">
-         <call-query href="putQuery">
-            <with-param name="name" query-param="name"/>
-            <with-param name="id" query-param="id"/>
-         </call-query>
-      </resource>
-      <resource method="DELETE" path="delete">
-         <call-query href="deleteQuery">
-            <with-param name="id" query-param="id"/>
-         </call-query>
-      </resource>
-      <resource method="POST" path="insert">
-         <call-query href="insertQuery">
-            <with-param name="name" query-param="name"/>
-            <with-param name="address" query-param="address"/>
-         </call-query>
-      </resource>
-      <resource method="GET" path="getjson/{id}">
-         <call-query href="getJsonQuery">
-            <with-param name="id" query-param="id"/>
-         </call-query>
-      </resource>
-   <policy key="conf:repository/components/org.wso2.carbon.security.mgt/policy/policy1.xml"/>
-   <enableSec/>
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://mysql.wso2.com:3306/employeedb</property>
+      <property name="username">dss</property>
+      <property name="password">123</property>
+      <property name="initialSize">10</property>
+      <property name="maxActive">3000</property>
+      <property name="minIdle">10</property>
+      <property name="maxIdle">50</property>
+   </config>
+   <query id="getQuery" useConfig="PerfTestDS">
+      <sql>select * from employee where id=:id</sql>
+      <result element="Employees" rowName="Employee">
+         <element column="id" name="id" xsdType="integer"/>
+         <element column="name" name="name" xsdType="string"/>
+      </result>
+      <param name="id" sqlType="INTEGER"/>
+   </query>
+   <query id="putQuery" useConfig="PerfTestDS">
+      <sql>update employee set name=:name where id=:id</sql>
+      <param name="name" sqlType="STRING"/>
+      <param name="id" sqlType="STRING"/>
+   </query>
+   <query id="deleteQuery" useConfig="PerfTestDS">
+      <sql>delete from employee where id=:id</sql>
+      <param name="id" sqlType="STRING"/>
+   </query>
+   <query id="insertQuery" useConfig="PerfTestDS">
+      <sql>insert into employee (name,address) values(:name,:address)</sql>
+      <param name="name" sqlType="STRING"/>
+      <param name="address" sqlType="STRING"/>
+   </query>
+   <query id="getJsonQuery" useConfig="PerfTestDS">
+      <sql>select * from employee where id=:id</sql>
+      <result outputType="json">{&#xd;"Employees": {&#xd;"Employee":&#xd;[{"id":"$id","name":"$name","address":"$address"}]&#xd;}&#xd;}</result>
+      <param name="id" sqlType="INTEGER"/>
+   </query>
+   <operation name="getOperation">
+      <call-query href="getQuery"/>
+   </operation>
+   <operation name="insertOperation">
+      <call-query href="insertQuery">
+         <with-param name="name" query-param="name"/>
+         <with-param name="address" query-param="address"/>
+      </call-query>
+   </operation>
+   <operation name="updateOperation">
+      <call-query href="putQuery">
+         <with-param name="name" query-param="name"/>
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </operation>
+   <operation name="deleteOperation">
+      <call-query href="deleteQuery">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </operation>
+   <resource method="GET" path="get/{id}">
+      <call-query href="getQuery">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="put">
+      <call-query href="putQuery">
+         <with-param name="name" query-param="name"/>
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="delete">
+      <call-query href="deleteQuery">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="insert">
+      <call-query href="insertQuery">
+         <with-param name="name" query-param="name"/>
+         <with-param name="address" query-param="address"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="getjson/{id}">
+      <call-query href="getJsonQuery">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
 </data>
